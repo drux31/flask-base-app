@@ -50,12 +50,12 @@ def register():
 def login():
     if request.method == "POST":
         username = request.form["username"]
-        password = request.form["passwprd"]
+        password = request.form["password"]
         db = get_db()
         error = None
         user = db.execute(
             "select user_id, username, password from user where username = ?",
-            (username),
+            (username,),
         ).fetchone()
 
         if user is None:
@@ -84,7 +84,7 @@ def load_logged_in_user():
             get_db()
             .execute(
                 "select user_id, username, password from user where user_id = ?",
-                (user_id),
+                (user_id,),
             )
             .fetchone()
         )
