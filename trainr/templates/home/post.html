@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h1>{% block title %}Post - {{ post['title'] }}{% endblock %}</h1>
+    {% if g.user['user_id'] == post['author_id'] %}
+    <a class="action" href="{{ url_for('home.update', id=post['post_id']) }}">Edit</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <article class="post">
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+
+      <hr>
+{% endblock %}
